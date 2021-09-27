@@ -8,12 +8,12 @@
     </mat-card>
     <mat-card fxFlex="*">
         <mat-card-title fxLayoutAlign="center center">
-            00:00
+          {{currentTime}}
         </mat-card-title>
         <mat-card-content>
             <div fxLayout="row" fxLayoutAlign="center center">
                 <div gdGap="5px" class="top-level-div">
-                    <div *ngFor="let item of cells" class="cell" [gdColumn]="'col ' + item.X" [gdRow]="'row ' + item.Y"
+                    <div *ngFor="let item of cells; trackBy:identify" class="cell" [style.height]="cellSize()" [style.width]="cellSize()" [gdColumn]="'col ' + item.X" [gdRow]="'row ' + item.Y"
                         (click)="cellClicked($event, item)" (contextmenu)="contextMenu($event, item)">
                         <div [ngSwitch]="item.status" fxLayout="row" fxLayoutAlign="center center"
                             style="height: 100%; width: 100%;" [style.background]="item.mineCountAround | countToColor">

@@ -1,24 +1,24 @@
 <h1 mat-dialog-title>Valitse asetukset</h1>
 <div mat-dialog-content>
-    <form fxLayout="column" fxGap="5" >
+    <form fxLayout="column" fxGap="5" #startForm="ngForm">
         <mat-form-field appearance="fill">
             <mat-label>Sarakkeita: </mat-label>
-            <input type="number" matInput [(ngModel)]="settings.columns" [ngModelOptions]="{standalone: true}">
+            <input type="number" matInput [(ngModel)]="settings.columns" [ngModelOptions]="{standalone: true}" [max]="50" [min]="7">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Rivejä: </mat-label>
-            <input type="number" matInput [(ngModel)]="settings.rows" [ngModelOptions]="{standalone: true}">
+            <input type="number" matInput [(ngModel)]="settings.rows" [ngModelOptions]="{standalone: true}" [max]="50" [min]="7">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Miinoja: </mat-label>
-            <input type="number" matInput [(ngModel)]="settings.mineTotalCount" [ngModelOptions]="{standalone: true}">
+            <input type="number" matInput [(ngModel)]="settings.mineTotalCount" [ngModelOptions]="{standalone: true}" [max]="100" [min]="1">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Elämiä: </mat-label>
-            <input type="number" matInput [(ngModel)]="settings.maxLives" [ngModelOptions]="{standalone: true}">
+            <input type="number" matInput [(ngModel)]="settings.maxLives" [ngModelOptions]="{standalone: true}" [max]="10" [min]="1">
         </mat-form-field>
     </form>
 </div>
 <div mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="settings" cdkFocusInitial>Ok</button>
+    <button [disabled]="!startForm.valid" mat-button [mat-dialog-close]="settings" cdkFocusInitial>Ok</button>
 </div>
